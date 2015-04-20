@@ -1,3 +1,4 @@
+# ; -*- mode: shell-script;-*-
 #
 # Defines general aliases and functions.
 #
@@ -5,33 +6,17 @@
 #   Robby Russell <robby@planetargon.com>
 #   Suraj N. Kurapati <sunaku@gmail.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+#   Liam Bowen <liambowen@gmail.com>
 
 # Load dependencies.
 pmodload 'helper' 'spectrum'
 
 # Correct commands.
-setopt CORRECT
+unsetopt correct_all
 
 #
 # Aliases
 #
-
-# Disable correction.
-alias ack='nocorrect ack'
-alias cd='nocorrect cd'
-alias cp='nocorrect cp'
-alias ebuild='nocorrect ebuild'
-alias gcc='nocorrect gcc'
-alias gist='nocorrect gist'
-alias grep='nocorrect grep'
-alias heroku='nocorrect heroku'
-alias ln='nocorrect ln'
-alias man='nocorrect man'
-alias mkdir='nocorrect mkdir'
-alias mv='nocorrect mv'
-alias mysql='nocorrect mysql'
-alias rm='nocorrect rm'
 
 # Disable globbing.
 alias bower='noglob bower'
@@ -90,7 +75,7 @@ else
   fi
 fi
 
-alias l='ls -1A'         # Lists in one column, hidden files.
+alias l='ls -lha'        # Lists in one column, hidden files.
 alias ll='ls -lh'        # Lists human readable sizes.
 alias lr='ll -R'         # Lists human readable sizes, recursively.
 alias la='ll -A'         # Lists human readable sizes, hidden files.
@@ -156,9 +141,6 @@ else
 fi
 
 # Miscellaneous
-
-# Serves a directory via HTTP.
-alias http-serve='python -m SimpleHTTPServer'
 
 #
 # Functions
