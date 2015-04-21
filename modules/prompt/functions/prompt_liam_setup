@@ -1,4 +1,4 @@
-#
+# ; -*- mode: shell-script;-*-
 # Ballers only
 #
 # Authors:
@@ -25,8 +25,15 @@ function prompt_liam_precmd {
     git-info
   fi
 
-  # Get Python virtualenv information TODO
-  # Get RVM Ruby version TODO
+  # Get Python virtualenv information
+  if (( $+functions[python-info] )); then
+    python-info
+  fi
+
+  # Get Ruby version information
+  if (( $+functions[ruby-info] )); then
+    ruby-info
+  fi
 }
 
 function prompt_liam_setup {
@@ -65,9 +72,15 @@ function prompt_liam_setup {
     'prompt' ' %F{blue}git%f$(coalesce "%b" "%p" "%c")%s' \
     'rprompt' '%A%B%S%a%d%m%r%U%u'
 
+  # Set python-info parameters
+  zstyle ':prezto:module:python:info:virtualenv' format '%F{yellow}[%v]%f'
+
+  # Set ruby-info parameters
+  zstyle ':prezto:module:ruby:info:version' format '%F{yellow}[%v]%f'
+
   # Define prompts.
-  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}${_prompt_liam_pwd}%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${INSIDE_EMACS:+" %B%F{green}E%f%b"}${git_info[rprompt]}'
+  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}${_prompt_liam_pwd}$python_info[virtualenv]$ruby_info[version]%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
+  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${INSIDE_EMACS:+" %B%F{green}E%f%b"}${git_info[rprompt]} %F{red}[%D{%Y-%m-%d %H:%M:%S}]%f'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
