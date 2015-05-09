@@ -34,16 +34,11 @@ export IRCSERVER="card.freenode.net"
 export GOPATH="$HOME/go"
 export CSHEDIT="emacsclient -t"
 export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -t"
 export ALTERNATE_EDITOR=""
 export PATH="$HOME/.local/bin/:/usr/local/go/bin/:$GOPATH/bin:/opt/google/chrome/:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/games:$HOME/.rvm/bin"
 
 [[ ! -d "$GOPATH" ]] && mkdir $GOPATH
-
-# virtualenvwrapper
-# export WORKON_HOME="$HOME/envs"
-# [[ ! -d "$WORKON_HOME" ]] && mkdir $WORKON_HOME
-# VEW_PATH=$(which virtualenvwrapper.sh)
-# [[ -n "$VEW_PATH" ]] && source "$VEW_PATH"
 
 if [ "$TERM" != "screen-256color" ] && [ "$TERM" != "fbterm" ] && [ "$TERM" != "linux" ]; then
     export TERM="xterm-256color"
