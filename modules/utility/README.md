@@ -31,23 +31,6 @@ To disable `make` highlighting, add the following line to *zpreztorc*:
 Aliases
 -------
 
-### Disabled Spelling Correction
-
-  - `ack`
-  - `cd`
-  - `cp`
-  - `ebuild`
-  - `gcc`
-  - `gist`
-  - `grep`
-  - `heroku`
-  - `ln`
-  - `man`
-  - `mkdir`
-  - `mv`
-  - `mysql`
-  - `rm`
-
 ### Disabled File Globbing
 
   - `bower`
@@ -110,10 +93,6 @@ Aliases
     installed).
   - `topm` displays information about processes sorted by RAM usage (`htop` not
     installed).
-
-### Miscellaneous
-
-  - `http-serve` serves a directory via HTTP.
 
 Functions
 ---------
