@@ -30,7 +30,7 @@ export IRCNICK="hut8"
 export IRCNAME="Liam"
 export IRCUSER="hut8"
 export IRCSERVER="card.freenode.net"
-
+export EMAIL="liambowen@gmail.com"
 export GOPATH="$HOME/go"
 export CSHEDIT="emacsclient -t"
 export EDITOR="emacsclient -t"
