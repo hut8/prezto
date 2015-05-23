@@ -38,6 +38,11 @@ export VISUAL="emacsclient -t"
 export ALTERNATE_EDITOR=""
 export PATH="$HOME/.local/bin/:/usr/local/go/bin/:$GOPATH/bin:/opt/google/chrome/:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/games:$HOME/.rvm/bin:/sbin:/usr/sbin"
 
+export GHC_EVENTS_PATH="/github-archive/2015"
+export GHC_TIMELINE_PATH="/github-archive/timeline"
+export GHC_LOADED_PATH="/github-archive/loaded"
+export GHC_PROCESSED_PATH="/github-archive/processed"
+
 [[ ! -d "$GOPATH" ]] && mkdir $GOPATH
 
 if [ "$TERM" != "screen-256color" ] && [ "$TERM" != "fbterm" ] && [ "$TERM" != "linux" ]; then
