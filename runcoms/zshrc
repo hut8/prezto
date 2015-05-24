@@ -40,8 +40,9 @@ export PATH="$HOME/.local/bin/:/usr/local/go/bin/:$GOPATH/bin:/opt/google/chrome
 
 export GHC_EVENTS_PATH="/github-archive/2015"
 export GHC_TIMELINE_PATH="/github-archive/timeline"
+export GHC_TRANSFORMED_PATH="/github-archive/transformed"
 export GHC_LOADED_PATH="/github-archive/loaded"
-export GHC_PROCESSED_PATH="/github-archive/processed"
+
 
 [[ ! -d "$GOPATH" ]] && mkdir $GOPATH
 
