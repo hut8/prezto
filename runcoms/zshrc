@@ -16,11 +16,6 @@ setopt PUSHD_TO_HOME
 
 alias wtf="git status"
 
-if hash hub 2>/dev/null;
-then
-    eval "$(hub alias -s)"
-fi
-
 commit_msg()    { curl whatthecommit.com 2>/dev/null | xmlstarlet sel -T -t -m '//div/p[1]' -v '.' }
 excuse()        { curl programmerexcuses.com 2>/dev/null | grep -m 1 center | sed 's/<[^>]\+>//g;' }
 gen_file_list() { find . -type f | sort | xargs sha1sum | tee file-list.txt }
