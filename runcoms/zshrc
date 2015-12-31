@@ -26,10 +26,6 @@ duc() {
     gzip -l $@ | awk 'END{print $2}' | numfmt --to=iec-i --suffix=B --format="%3f"
 }
 
-export IRCNICK="hut8"
-export IRCNAME="Liam"
-export IRCUSER="hut8"
-export IRCSERVER="card.freenode.net"
 export EMAIL="liambowen@gmail.com"
 export GOPATH="$HOME/go"
 export CSHEDIT="emacsclient -t"
@@ -41,7 +37,7 @@ export ANSIBLE_NOCOWS=1
 export LOLCOMMITS_CAPTURER='CaptureHttp'
 export LOLCOMMITS_URL='http://127.0.0.1:9000/selfie'
 
-export GHC_EVENTS_PATH="/github-archive/2015"
+export GHC_EVENTS_PATH="/github-archive/events"
 export GHC_TIMELINE_PATH="/github-archive/timeline"
 export GHC_TRANSFORMED_PATH="/github-archive/transformed"
 export GHC_LOADED_PATH="/github-archive/loaded"
