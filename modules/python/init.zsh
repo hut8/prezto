@@ -41,6 +41,7 @@ if (( $+commands[virtualenvwrapper.sh] )); then
 
   # Disable the virtualenv prompt.
   VIRTUAL_ENV_DISABLE_PROMPT=1
+  VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 
   source "$commands[virtualenvwrapper.sh]"
 fi
