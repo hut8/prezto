@@ -37,7 +37,8 @@ zstyle ':prezto:load' pmodule \
   'python' \
   'syntax-highlighting' \
   'history-substring-search' \
-  'prompt'
+  'prompt' \
+  'transfer-sh'
 
 
 #
