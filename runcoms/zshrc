@@ -52,3 +52,5 @@ fi
 
 # Local preferences
 [[ -f "$HOME/.zshrc-local" ]] && source "$HOME/.zshrc-local"
+
+cd . # force RVM auto-cd to run
