@@ -16,17 +16,38 @@ setopt PUSHD_TO_HOME
 
 alias wtf="git status"
 
-commit_msg()    { curl whatthecommit.com 2>/dev/null | xmlstarlet sel -T -t -m '//div/p[1]' -v '.' }
-excuse()        { curl programmerexcuses.com 2>/dev/null | grep -m 1 center | sed 's/<[^>]\+>//g;' }
-gen_file_list() { find . -type f | sort | xargs sha1sum | tee file-list.txt }
+function commit-msg {
+    curl whatthecommit.com 2>/dev/null | \
+        xmlstarlet sel -T -t -m '//div/p[1]' -v '.'
+}
+
+function excuse() {
+    curl programmerexcuses.com 2>/dev/null | \
+        grep -m 1 center | \
+        sed 's/<[^>]\+>//g;'
+}
+
+function file-index {
+    find . -type f | \
+        sort | \
+        xargs sha1sum | \
+        tee file-list.txt
+}
+
 # Enumerate processes in Disk Sleep ('D' in top)
-ps_ds()         { top -b -n 1 | awk '{if (NR <=7) print; else if ($8 == "D") {print; count++} } END {print "Total status D: "count}' }
+function find-disk-sleep {
+    top -b -n 1 | \
+        awk '{if (NR <=7) print; else if ($8 == "D") {print; count++} } END {print "Total status D: "count}'
+}
 # Disk usage for compressed files
 duc() {
-    gzip -l $@ | awk 'END{print $2}' | numfmt --to=iec-i --suffix=B --format="%3f"
+    gzip -l $@ | \
+        awk 'END{print $2}' | \
+        numfmt --to=iec-i --suffix=B --format="%3f"
 }
 
 export EMAIL="liambowen@gmail.com"
+export GIT_AUTHOR_NAME="Liam"
 export GOPATH="$HOME/go"
 export CSHEDIT="emacsclient -t"
 export EDITOR="emacsclient -t"
@@ -34,18 +55,10 @@ export VISUAL="emacsclient -t"
 export ALTERNATE_EDITOR=""
 export PATH="$HOME/.rvm/bin:$HOME/.local/bin:/usr/local/go/bin:$GOPATH/bin:/usr/local/heroku/bin:/opt/google/chrome:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/games:/sbin:/usr/sbin"
 export ANSIBLE_NOCOWS=1
-export LOLCOMMITS_CAPTURER='CaptureHttp'
-export LOLCOMMITS_URL='http://127.0.0.1:9000/selfie'
-
-export GHC_EVENTS_PATH="/github-archive/events"
-export GHC_TIMELINE_PATH="/github-archive/timeline"
-export GHC_TRANSFORMED_PATH="/github-archive/transformed"
-export GHC_LOADED_PATH="/github-archive/loaded"
-export GHC_USERDB_PATH="/github-archive/userdb"
-export GHC_LOG_PATH="/github-archive/logs"
 
 [[ ! -d "$GOPATH" ]] && mkdir $GOPATH
 
+# Workaround for gnome-terminal et. al. which fail to report color support
 if [ "$TERM" != "screen-256color" ] && [ "$TERM" != "fbterm" ] && [ "$TERM" != "linux" ]; then
     export TERM="xterm-256color"
 fi
