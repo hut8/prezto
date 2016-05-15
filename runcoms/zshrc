@@ -46,8 +46,9 @@ duc() {
         numfmt --to=iec-i --suffix=B --format="%3f"
 }
 
-export EMAIL="liambowen@gmail.com"
-export GIT_AUTHOR_NAME="Liam"
+export EMAIL='liambowen@gmail.com'
+export GIT_AUTHOR_NAME='Liam Bowen'
+export GIT_COMMITTER_NAME='Liam Bowen'
 export GOPATH="$HOME/go"
 export CSHEDIT="emacsclient -t"
 export EDITOR="emacsclient -t"
