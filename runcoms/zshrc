@@ -52,7 +52,7 @@ duc() {
         numfmt --to=iec-i --suffix=B --format="%3f"
 }
 
-export EMAIL='liambowen@gmail.com'
+export EMAIL='liam@tenex.tech'
 export GIT_AUTHOR_NAME='Liam Bowen'
 export GIT_COMMITTER_NAME='Liam Bowen'
 export GOPATH="$HOME/go"
