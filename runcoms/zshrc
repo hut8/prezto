@@ -46,10 +46,14 @@ function now {
 }
 
 # Disk usage for compressed files
-duc() {
+function duc {
     gzip -l $@ | \
         awk 'END{print $2}' | \
         numfmt --to=iec-i --suffix=B --format="%3f"
+}
+
+function ta {
+    tmux attach-session || tmux
 }
 
 export EMAIL='liam@tenex.tech'
