@@ -21,7 +21,7 @@ function commit-msg {
         xmlstarlet sel -T -t -m '//div/p[1]' -v '.'
 }
 
-function excuse() {
+function excuse {
     curl programmerexcuses.com 2>/dev/null | \
         grep -m 1 center | \
         sed 's/<[^>]\+>//g;'
@@ -50,6 +50,16 @@ function duc {
     gzip -l $@ | \
         awk 'END{print $2}' | \
         numfmt --to=iec-i --suffix=B --format="%3f"
+}
+
+# Show specific line
+# Usage: sl <path-to-file> <line-number>
+unalias sl &> /dev/null
+function sl {
+    nl --body-numbering a \
+       --number-format ln \
+       "$1" |
+        grep -C 5 "^$2 "
 }
 
 function ta {
