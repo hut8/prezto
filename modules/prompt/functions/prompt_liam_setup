@@ -79,7 +79,7 @@ function prompt_liam_setup {
   zstyle ':prezto:module:ruby:info:version' format '%F{yellow}[%v]%f'
 
   # Define prompts.
-  PROMPT='%F{red}%n@%M%f %F{cyan}${_prompt_liam_pwd} $python_info[virtualenv]$ruby_info[version]%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
+  PROMPT='%F{red}%n@%S%M%s%f %F{cyan}${_prompt_liam_pwd} $python_info[virtualenv]$ruby_info[version]%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
   RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${INSIDE_EMACS:+" %B%F{green}E%f%b"}${git_info[rprompt]} %F{red}[%D{%Y-%m-%d %H:%M:%S}]%f'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
