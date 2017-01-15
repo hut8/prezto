@@ -100,3 +100,5 @@ case $TERM in
         }
         ;;
 esac
+
+export PATH="$HOME/.yarn/bin:$PATH"
