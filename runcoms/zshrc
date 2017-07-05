@@ -100,3 +100,7 @@ case $TERM in
         }
         ;;
 esac
+
+hash kubectl 2>/dev/null && source <(kubectl completion zsh)
+
+export PATH="$HOME/.yarn/bin:$PATH"
