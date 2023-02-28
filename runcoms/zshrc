@@ -33,6 +33,11 @@ export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 export PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
 
+# Google Cloud SDK
+[[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && . "$HOME/google-cloud-sdk/path.zsh.inc"
+[[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]] && . "$HOME/google-cloud-sdk/completion.zsh.inc"
+
+
 # Perl things
 export PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
 export PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
