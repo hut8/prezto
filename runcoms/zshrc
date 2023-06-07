@@ -32,6 +32,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 export PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
+export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"
 
 # Google Cloud SDK
 [[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && . "$HOME/google-cloud-sdk/path.zsh.inc"
