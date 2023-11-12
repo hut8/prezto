@@ -60,6 +60,8 @@ then
   export PATH="$PATH:$ANDROID_HOME/platform-tools"
 fi
 
+(( $+commands[rtx] )) && eval "$(rtx activate zsh)"
+
 # Local customizations
 if [[ -s "${ZDOTDIR:-$HOME}/.localrc" ]]; then
   source "${ZDOTDIR:-$HOME}/.localrc"
