@@ -22,9 +22,6 @@ fi
 
 unsetopt correct_all
 
-# Load asdf
-[[ -f "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
-
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 
@@ -37,7 +34,6 @@ export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"
 # Google Cloud SDK
 [[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && . "$HOME/google-cloud-sdk/path.zsh.inc"
 [[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]] && . "$HOME/google-cloud-sdk/completion.zsh.inc"
-
 
 # Perl things
 export PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
