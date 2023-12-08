@@ -41,6 +41,31 @@ export PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_
 export PERL_MB_OPT="--install_base \"$HOME/perl5\""
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
 
+# Go updates
+pull-go() {
+  local arch=$(uname -m)
+  local os=$(uname -s | tr '[:upper:]' '[:lower:]')
+  local archive=$(curl -sSL 'https://go.dev/dl/?mode=json' |
+    jq -r '.[0].files[] | select(.os == "'$os'") | select(.arch == "'$arch'") | select(.kind == "archive")')
+  local version="go$(echo "$archive" | jq -r '.version')"
+  local filename=$(echo "$archive" | jq -r '.filename')
+  local current="$(go version | awk '{print $3}')"
+  echo "Latest version: $version for $os/$arch"
+  echo "Current version: $current"
+  if [[ "$current" == "$version" ]]; then
+    echo "Already up to date"
+    return
+  fi
+  echo "Downloading $filename to /tmp/$filename"
+  curl -sSL -o "/tmp/$filename" "https://go.dev/dl/$filename"
+  echo "Removing old Go installation"
+  sudo rm -rf /usr/local/go
+  echo "Extracting to /usr/local"
+  sudo tar -C /usr/local -xzf "/tmp/$filename"
+  echo "Cleaning up"
+  sudo rm "/tmp/$filename"
+}
+
 # Flyctl
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$PATH:$FLYCTL_INSTALL/bin"
