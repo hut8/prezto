@@ -43,16 +43,25 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
 
 # Go updates
 pull-go() {
-  local arch=$(uname -m)
+  local machine_arch=$(uname -m)
   local os=$(uname -s | tr '[:upper:]' '[:lower:]')
-  [[ arch = "x86_64" ]] && arch="amd64"
-  echo "Pulling Go for $os/$arch"
+  if [[ "$machine_arch" == "x86_64" ]]
+  then
+    echo "normalizing machine arch"
+     machine_arch="amd64"
+  fi
+  echo "Pulling Go for $os/$machine_arch"
   local archive=$(curl -sSL 'https://go.dev/dl/?mode=json' |
-    jq -r '.[0].files[] | select(.os == "'$os'") | select(.arch == "'$arch'") | select(.kind == "archive")')
-  local version="go$(echo "$archive" | jq -r '.version')"
-  local filename=$(echo "$archive" | jq -r '.filename')
+    jq -r '.[0].files[] | select(.os == "'$os'") | select(.arch == "'$machine_arch'") | select(.kind == "archive")')
+  local version="$(echo "$archive" | jq -r '.version')"
+  local filename="$(echo "$archive" | jq -r '.filename')"
+  if [[ -z "$version" ]] || [[ -z "filename" ]]
+  then
+    echo "unable to find current version from JSON dump at https://go.dev/dl/?mode=json"
+    return 1
+  fi
   local current="$(go version | awk '{print $3}')"
-  echo "Latest version: $version for $os/$arch"
+  echo "Latest version: $version for $os/$machine_arch"
   echo "Current version: $current"
   if [[ "$current" == "$version" ]]; then
     echo "Already up to date"
