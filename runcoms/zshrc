@@ -45,6 +45,8 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
 pull-go() {
   local arch=$(uname -m)
   local os=$(uname -s | tr '[:upper:]' '[:lower:]')
+  [[ arch = "x86_64" ]] && arch="amd64"
+  echo "Pulling Go for $os/$arch"
   local archive=$(curl -sSL 'https://go.dev/dl/?mode=json' |
     jq -r '.[0].files[] | select(.os == "'$os'") | select(.arch == "'$arch'") | select(.kind == "archive")')
   local version="go$(echo "$archive" | jq -r '.version')"
