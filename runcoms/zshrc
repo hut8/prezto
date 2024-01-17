@@ -101,6 +101,16 @@ fi
 
 [[ -f "${HOME}/.iterm2-shell-integration.zsh" ]] && . "${HOME}/.iterm2-shell-integration.zsh"
 
+show-listening-ports() {
+    if [ $# -eq 0 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P
+    elif [ $# -eq 1 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+    else
+        echo "Usage: $0 [pattern]"
+    fi
+}
+
 # Local customizations
 if [[ -s "${ZDOTDIR:-$HOME}/.localrc" ]]; then
   source "${ZDOTDIR:-$HOME}/.localrc"
