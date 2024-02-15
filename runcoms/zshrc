@@ -100,8 +100,8 @@ then
   export PATH="$PATH:$ANDROID_HOME/platform-tools"
 fi
 
-# RTX
-(( $+commands[rtx] )) && eval "$(rtx activate zsh)"
+# mise
+(( $+commands[mise] )) && eval "$(mise activate zsh)"
 
 [[ -f "${HOME}/.iterm2-shell-integration.zsh" ]] && . "${HOME}/.iterm2-shell-integration.zsh"
 
