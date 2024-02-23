@@ -102,14 +102,18 @@ then
 fi
 
 # Mise
-(( $+commands[mise] )) && eval "$(mise activate zsh)"
+(( $+commands[mise] )) && {
+  export MISE_PYTHON_VENV_AUTO_CREATE=1
+  eval "$(mise activate zsh)"
+}
 
 [[ -f "${HOME}/.iterm2-shell-integration.zsh" ]] && . "${HOME}/.iterm2-shell-integration.zsh"
 
 # Show listening ports
 show-listening-ports() {
   # Detect if running on MacOS
-  if [ $(uname) == "Darwin" ]; then
+  case $(uname) in
+    "Darwin")
     # MacOS
     if [ $# -eq 0 ]; then
         sudo lsof -iTCP -sTCP:LISTEN -n -P
@@ -118,7 +122,11 @@ show-listening-ports() {
     else
         echo "Usage: $0 [pattern]"
     fi
-  fi
+    ;;
+    *)
+    echo "Not supported on $(uname)"
+    ;;
+  esac
 }
 
 # Local customizations
