@@ -54,8 +54,13 @@ pull-go() {
   local os=$(uname -s | tr '[:upper:]' '[:lower:]')
   if [[ "$machine_arch" == "x86_64" ]]
   then
-    echo "normalizing machine arch"
-     machine_arch="amd64"
+    echo "normalizing machine arch x86_64 -> amd64"
+    machine_arch="amd64"
+  fi
+  if [[ "$machine_arch" == "aarch64" ]]
+  then
+    echo "normalizing machine arch aarch64 -> arm64"
+    machine_arch="arm64"
   fi
   echo "Pulling Go for $os/$machine_arch"
   local archive=$(curl -sSL 'https://go.dev/dl/?mode=json' |
