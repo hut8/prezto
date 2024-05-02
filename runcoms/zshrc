@@ -36,6 +36,7 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 export PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"
 
 # Google Cloud SDK
@@ -54,8 +55,13 @@ pull-go() {
   local os=$(uname -s | tr '[:upper:]' '[:lower:]')
   if [[ "$machine_arch" == "x86_64" ]]
   then
-    echo "normalizing machine arch"
-     machine_arch="amd64"
+    echo "normalizing machine arch x86_64 -> amd64"
+    machine_arch="amd64"
+  fi
+  if [[ "$machine_arch" == "aarch64" ]]
+  then
+    echo "normalizing machine arch aarch64 -> arm64"
+    machine_arch="arm64"
   fi
   echo "Pulling Go for $os/$machine_arch"
   local archive=$(curl -sSL 'https://go.dev/dl/?mode=json' |
@@ -102,14 +108,18 @@ then
 fi
 
 # Mise
-(( $+commands[mise] )) && eval "$(mise activate zsh)"
+(( $+commands[mise] )) && {
+  export MISE_PYTHON_VENV_AUTO_CREATE=1
+  eval "$(mise activate zsh)"
+}
 
 [[ -f "${HOME}/.iterm2-shell-integration.zsh" ]] && . "${HOME}/.iterm2-shell-integration.zsh"
 
 # Show listening ports
 show-listening-ports() {
   # Detect if running on MacOS
-  if [ $(uname) == "Darwin" ]; then
+  case $(uname) in
+    "Darwin")
     # MacOS
     if [ $# -eq 0 ]; then
         sudo lsof -iTCP -sTCP:LISTEN -n -P
@@ -118,7 +128,11 @@ show-listening-ports() {
     else
         echo "Usage: $0 [pattern]"
     fi
-  fi
+    ;;
+    *)
+    echo "Not supported on $(uname)"
+    ;;
+  esac
 }
 
 # Local customizations
