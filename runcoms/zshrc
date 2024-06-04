@@ -92,6 +92,30 @@ pull-go() {
   sudo rm "/tmp/$filename"
 }
 
+# delete all git branches that have been merged into the current branch
+git-delete-merged-branches() {
+  git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
+}
+
+# Function to format XML file in place using xmlstarlet
+format_xml() {
+    local input_file="$1"
+    if [[ -z "$input_file" ]]; then
+        echo "Usage: format-xml <input_file>"
+        return 1
+    fi
+
+    # Check if the input file exists
+    if [[ ! -f "$input_file" ]]; then
+        echo "File not found: $input_file"
+        return 1
+    fi
+
+    # Format the XML file in place
+    xmlstarlet fo "$input_file" > "${input_file}.tmp" && mv -f "${input_file}.tmp" "$input_file"
+}
+alias format-xml=format_xml
+
 # Flyctl
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$PATH:$FLYCTL_INSTALL/bin"
