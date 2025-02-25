@@ -69,6 +69,10 @@ update_dotnet_home() {
   fi
 }
 add-zsh-hook precmd update_dotnet_home
+export DOTNET_WATCH_RESTART_ON_RUDE_EDIT=true
+
+# Ripgrep things
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # Go updates
 pull-go() {
@@ -114,6 +118,10 @@ pull-go() {
 # delete all git branches that have been merged into the current branch
 git-delete-merged-branches() {
   git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
+}
+
+source-dotenv() {
+    export $(cat .env | xargs)
 }
 
 # Function to format XML file in place using xmlstarlet
