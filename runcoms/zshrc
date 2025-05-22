@@ -71,9 +71,6 @@ update_dotnet_home() {
 add-zsh-hook precmd update_dotnet_home
 export DOTNET_WATCH_RESTART_ON_RUDE_EDIT=true
 
-# Ripgrep things
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
-
 # Go updates
 pull-go() {
   local machine_arch=$(uname -m)
