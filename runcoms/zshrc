@@ -166,6 +166,16 @@ fi
   eval "$(mise activate zsh)"
 }
 
+# uv and uvx
+# if uv is present, then generate shell completions
+if command -v uv > /dev/null 2>&1; then
+  eval "$(uv --completion zsh)"
+fi
+if command -v uvx > /dev/null 2>&1; then
+  eval "$(uvx --completion zsh)"
+fi
+
+# iTerm2 shell integration
 [[ -f "${HOME}/.iterm2-shell-integration.zsh" ]] && . "${HOME}/.iterm2-shell-integration.zsh"
 
 # Show listening ports
