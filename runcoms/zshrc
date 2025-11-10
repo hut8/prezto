@@ -166,10 +166,15 @@ fi
 # uv and uvx
 # if uv is present, then generate shell completions
 if command -v uv > /dev/null 2>&1; then
-  eval "$(uv --completion zsh)"
+  eval "$(uv --generate-shell-completion zsh)"
 fi
 if command -v uvx > /dev/null 2>&1; then
-  eval "$(uvx --completion zsh)"
+  eval "$(uvx --generate-shell-completion zsh)"
+fi
+
+# sccache for Rust
+if command -v sccache > /dev/null 2>&1; then
+  export RUSTC_WRAPPER=sccache
 fi
 
 # iTerm2 shell integration
