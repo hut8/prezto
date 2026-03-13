@@ -144,6 +144,15 @@ alias format-xml=format_xml
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$PATH:$FLYCTL_INSTALL/bin"
 
+if [[ -d "/opt/homebrew/opt/postgresql@17/bin" ]]; then
+  export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+fi
+
+# opencode
+if [[ -d "$HOME/.opencode/bin" ]]; then
+  export PATH="$HOME/.opencode/bin:$PATH"
+fi
+
 # Android
 export ANDROID_HOME="$HOME/Android/Sdk"
 if [[ $(uname) == "Darwin" ]]
