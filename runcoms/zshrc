@@ -175,6 +175,11 @@ fi
   eval "$(mise activate zsh)"
 }
 
+# sccache for Rust
+if command -v sccache > /dev/null 2>&1; then
+  export RUSTC_WRAPPER=sccache
+fi
+
 # iTerm2 shell integration
 [[ -f "${HOME}/.iterm2-shell-integration.zsh" ]] && . "${HOME}/.iterm2-shell-integration.zsh"
 
